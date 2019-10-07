@@ -10,4 +10,5 @@ export interface Assistant {
   updateDate?: Date;
   checkIn?: boolean;
   visibleInSearch?: boolean;
+  qrSent?: boolean;
 }

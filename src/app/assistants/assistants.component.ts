@@ -80,4 +80,9 @@ export class AssistantsComponent implements OnInit, OnDestroy {
       this.currentCredential.print();
     }
   }
+
+  toggleQRSent(assistant: Assistant): void {
+    assistant.qrSent = !assistant.qrSent;
+    this.assistantService.upsertAssistant(assistant);
+  }
 }

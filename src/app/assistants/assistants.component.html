@@ -12,7 +12,8 @@
         <th>#</th>
         <th>Full Name</th>
         <th class="hide-on-small-only">Email</th>
-        <th class="hide-on-small-only">Phone Number</th>
+        <th class="hide-on-small-only">Phone</th>
+        <th class="center-align">QR Sent</th>
         <th></th>
       </tr>
     </thead>
@@ -23,6 +24,14 @@
           <td>{{ assistant.fullName }}</td>
           <td class="hide-on-small-only">{{ assistant.email }}</td>
           <td class="hide-on-small-only">{{ assistant.phoneNumber }}</td>
+          <td class="center-align">
+            <p>
+              <label>
+                <input type="checkbox" [checked]="assistant.qrSent" (change)="toggleQRSent(assistant)">
+                <span></span>
+              </label>
+            </p>
+          </td>
           <td>
             <a class="modal-trigger" href="#print-credential" (click)="selectedAssistant = assistant">
               <i class="fas fa-qrcode fa-lg"></i>
