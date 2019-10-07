@@ -1,16 +1,15 @@
-<h3>Scanner</h3>
-<div class="input-field">
-  <select tgSelect [(ngModel)]="selectedItemForScan">
-    <option value="" disabled selected>Choose an option</option>
-    <option value="checkIn">Check In</option>
-    <option value="snackOne">Snack #1</option>
-    <option value="lunch">Lunch</option>
-    <option value="snackTwo">Snack #2</option>
-  </select>
-  <label></label>
-</div>
-<div class="center-align">
-  <zxing-scanner (scanSuccess)="processCode($event)"></zxing-scanner>
+<div class="container">
+  <h3>Scanner</h3>
+  <div class="input-field">
+    <select tgSelect [(ngModel)]="selectedItemForScan">
+      <option value="" disabled selected>Choose an option</option>
+      <option value="checkIn">Check In</option>
+    </select>
+    <label></label>
+  </div>
+  <div class="center-align">
+    <zxing-scanner (scanSuccess)="processCode($event)"></zxing-scanner>
+  </div>
 </div>
 
 <div #assistantProcessedModal=modalDirective tgModal (modalClose)="cleanData()" class="modal">
@@ -21,7 +20,6 @@
       <img [src]="modalImage" [alt]="modalMessage">
       <ng-container *ngIf="assistant; else modalError">
         <p>Name: {{ assistant.fullName }}</p>
-        <p>Package: {{ assistant.package }}</p>
       </ng-container>
       <ng-template #modalError>
         <p><b>The scanner reads: </b> {{ assistantId }}</p>

@@ -7,7 +7,6 @@ import { AssistantsRoutingModule } from './assistants-routing.module';
 import { AssistantsComponent } from './assistants.component';
 import { AssistantService } from '../shared/services/assistant/assistant.service';
 import { CredentialModule } from '../shared/components/credential/credential.module';
-import { PackageModule } from '../shared/pipes/package-parser/package-parser.module';
 import { ModalModule } from '../shared/directives/modal/modal.module';
 import { SelectModule } from '../shared/directives/select/select.module';
 import { MaterializeService } from '../shared/services/materialize/materialize.service';
@@ -20,7 +19,6 @@ import { MaterializeService } from '../shared/services/materialize/materialize.s
     ReactiveFormsModule,
     AssistantsRoutingModule,
     CredentialModule,
-    PackageModule,
     ModalModule,
     SelectModule
   ],

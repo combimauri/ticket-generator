@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Assistant } from '../../models/assistant.model';
-import { Package } from '../../models/package.enum';
 
 const collectionName = 'assistants';
 const deleteFlagField = 'deleteFlag';
@@ -51,7 +50,7 @@ export class AssistantService {
     if (!id) {
       id = this.db.createId();
       assistant.id = id;
-      assistant.insertDate = new Date();
+      assistant.addDate = new Date();
 
       this.initializeCheckValues(assistant);
     } else {
@@ -80,30 +79,7 @@ export class AssistantService {
       return true;
     }
 
-    if (itemForScan === 'snackOne' || itemForScan === 'snackTwo') {
-      const valid = !!assistant.checkIn;
-
-      if (!valid) {
-        messageEmitter.emit('Looks like the assistant did not make check in');
-      }
-
-      return valid;
-    }
-
-    if (itemForScan === 'lunch') {
-      const validCheckIn = !!assistant.checkIn;
-      const validPackage = assistant.package !== Package.bronze;
-
-      if (!validCheckIn) {
-        messageEmitter.emit('Looks like the assistant did not make check in');
-      }
-
-      if (!validPackage) {
-        messageEmitter.emit('Assistant cannot access this benefit');
-      }
-
-      return validCheckIn && validPackage;
-    }
+    messageEmitter.emit('Looks like the assistant did not make check in');
 
     return false;
   }

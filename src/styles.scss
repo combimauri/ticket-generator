@@ -1,6 +1,7 @@
 @import './styles.colors';
 @import '~materialize-css/sass/materialize';
 @import '~@fortawesome/fontawesome-free/css/all.css';
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 @font-face {
   font-family: 'Antonio';
@@ -8,7 +9,7 @@
 }
 
 body {
-  font-family: 'Antonio', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 tg-root {
