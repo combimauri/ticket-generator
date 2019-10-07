@@ -1,19 +1,15 @@
-<h3>Scanner</h3>
-<div class="input-field">
-  <select tgSelect [(ngModel)]="selectedItemForScan">
-    <option value="" disabled selected>Choose an option</option>
-    <option value="checkIn">Check In</option>
-    <option value="fridayDinner">Friday Dinner</option>
-    <option value="saturdayBreakfast">Saturday Breakfast</option>
-    <option value="saturdayLunch">Saturday Lunch</option>
-    <option value="saturdayDinner">Saturday Dinner</option>
-    <option value="sundayBreakfast">Sunday Breakfast</option>
-    <option value="sundayLunch">Sunday Lunch</option>
-  </select>
-  <label></label>
-</div>
-<div class="center-align">
-  <zxing-scanner (scanSuccess)="processCode($event)"></zxing-scanner>
+<div class="container">
+  <h3>Scanner</h3>
+  <div class="input-field">
+    <select tgSelect [(ngModel)]="selectedItemForScan">
+      <option value="" disabled selected>Choose an option</option>
+      <option value="checkIn">Check In</option>
+    </select>
+    <label></label>
+  </div>
+  <div class="center-align">
+    <zxing-scanner (scanSuccess)="processCode($event)"></zxing-scanner>
+  </div>
 </div>
 
 <div #assistantProcessedModal=modalDirective tgModal (modalClose)="cleanData()" class="modal">

@@ -1,0 +1,31 @@
+@import '../../../styles.colors';
+@import '../../../styles.mat';
+
+nav,
+.sidenav {
+  background-color: $navbar-color;
+}
+
+nav a,
+.sidenav li > a {
+  color: $navbar-text-color;
+}
+
+#logo-img {
+  object-fit: contain;
+  height: 56px;
+
+  @media #{$medium-and-up} {
+    height: 64px;
+  }
+}
+
+#sign-out-mobile {
+  position: absolute;
+  width: 100%;
+  bottom: 70px;
+
+  a {
+    color: $navbar-color;
+  }
+}

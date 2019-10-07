@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
-  footerLink = 'https://women.swcbba.org';
+  footerLink = 'https://github.com/mauricioarce/ticket-generator';
 }

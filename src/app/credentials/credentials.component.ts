@@ -8,7 +8,7 @@ import { AssistantService } from '../shared/services/assistant/assistant.service
 import { CredentialComponent } from '../shared/components/credential/credential.component';
 
 const firstLineTop = 0;
-const secondLineTop = 300;
+const secondLineTop = 310;
 const firstItemLeft = 0;
 const secondItemLeft = 200;
 const JPEG = 'JPEG';
@@ -23,10 +23,10 @@ export class CredentialsComponent implements OnInit {
   @ViewChildren('credentials')
   credentials: QueryList<CredentialComponent>;
 
-  constructor(private postulantsService: AssistantService) {}
+  constructor(private assistantService: AssistantService) {}
 
   ngOnInit(): void {
-    this.assistants$ = this.postulantsService.getAssistants();
+    this.assistants$ = this.assistantService.getAssistants();
   }
 
   printCredentials(): void {

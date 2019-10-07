@@ -53,12 +53,13 @@ export class CredentialComponent implements OnInit, OnChanges {
       const context = (this.credentialCanvas
         .nativeElement as HTMLCanvasElement).getContext('2d');
       const templateImage = new Image();
-      const qrTop = 185;
+      const qrTop = 180;
       const qrLeft = 87;
-      const nameTop = 157;
-      const nameLeft = this.canvasWidth / 2;
+      const titleTop = 150;
+      const nameTop = 400;
+      const textLeft = this.canvasWidth / 2;
 
-      templateImage.src = 'assets/images/cred.png';
+      templateImage.src = 'assets/images/women-day-cred.jpg';
       templateImage.onload = () => {
         let qrImage = this.qrCode.el.nativeElement.querySelector('img');
 
@@ -67,9 +68,14 @@ export class CredentialComponent implements OnInit, OnChanges {
         }
 
         context.drawImage(templateImage, 0, 0);
-        context.font = '25px Antonio';
+        context.font = '27px Raleway';
+        context.fillStyle = '#ff1644';
         context.textAlign = 'center';
-        context.fillText(this.assistant.fullName, nameLeft, nameTop);
+        context.fillText('Día Nacional de la Mujer', textLeft, titleTop);
+        context.font = '20px Raleway';
+        context.fillStyle = '#000000';
+        context.textAlign = 'center';
+        context.fillText(this.assistant.fullName, textLeft, nameTop);
         context.drawImage(qrImage, qrLeft, qrTop);
       };
     }

@@ -2,17 +2,19 @@
   <nav>
     <div class="nav-wrapper">
       <div class="container">
-        <a routerLink="/">Tickets SWCBBA</a>
+        <a class="brand-logo" routerLink="/">
+          <img id="logo-img" src="assets/images/logo.png" alt="Ticket Generator">
+        </a>
         <ng-container *ngIf="auth.currentUser | async">
           <a data-target="mobile-menu" class="sidenav-trigger">
             <i class="fa fa-bars"></i>
           </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <ul class="right hide-on-med-and-down">
             <li><a routerLink="/assistants">Assistants</a></li>
             <li><a routerLink="/registration">Registration</a></li>
             <li><a routerLink="/credentials">Credentials</a></li>
             <li><a routerLink="/scanner">Scanner</a></li>
-            <li><a (click)="auth.logout()">Sign Out</a></li>
+            <li><a title="Sign Out" (click)="auth.logout()"><i class="fas fa-sign-out-alt"></i></a></li>
           </ul>
         </ng-container>
       </div>
@@ -25,7 +27,11 @@
       <li><a routerLink="/registration" class="sidenav-close">Registration</a></li>
       <li><a routerLink="/credentials" class="sidenav-close">Credentials</a></li>
       <li><a routerLink="/scanner" class="sidenav-close">Scanner</a></li>
-      <li><a (click)="auth.logout()" class="sidenav-close">Sign Out</a></li>
+      <li id="sign-out-mobile">
+        <a (click)="auth.logout()" class="waves-effect waves-light btn sidenav-close">
+          <i class="fas fa-sign-out-alt"></i>Sign Out
+        </a>
+      </li>
     </ul>
   </ng-container>
 </header>

@@ -1,43 +1,47 @@
-<h3>Assistants</h3>
-<div class="row">
-  <div class="input-field col s12 m4">
-    <input type="text" name="search" class="form-control" placeholder="Search assistants" [(ngModel)]="searchTerm"
-      (ngModelChange)="searchAssistant()">
+<div class="container">
+  <h3>Assistants</h3>
+  <div class="row">
+    <div class="input-field col s12 m4">
+      <input type="text" name="search" class="form-control" placeholder="Search assistants" [(ngModel)]="searchTerm"
+        (ngModelChange)="searchAssistant()">
+    </div>
   </div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Full Name</th>
+        <th class="hide-on-small-only">Email</th>
+        <th class="hide-on-small-only">Phone Number</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assistant of assistants; index as i">
+        <ng-container *ngIf="assistant.visibleInSearch">
+          <td>{{ i + 1 }}</td>
+          <td>{{ assistant.fullName }}</td>
+          <td class="hide-on-small-only">{{ assistant.email }}</td>
+          <td class="hide-on-small-only">{{ assistant.phoneNumber }}</td>
+          <td>
+            <a class="modal-trigger" href="#print-credential" (click)="selectedAssistant = assistant">
+              <i class="fas fa-qrcode fa-lg"></i>
+            </a>
+            <a class="modal-trigger" href="#upsert-assistant" (click)="patchAssistantsForm(assistant)">
+              <i class="fas fa-edit fa-lg"></i>
+            </a>
+            <a class="modal-trigger red-text" href="#delete-assistant" (click)="selectedAssistant = assistant">
+              <i class="fas fa-trash-alt fa-lg"></i>
+            </a>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn-floating btn-large waves-effect waves-light modal-trigger" href="#upsert-assistant">
+    <i class="fas fa-plus"></i>
+  </a>
 </div>
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Full Name</th>
-      <th class="hide-on-small-only">Email</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let assistant of assistants; index as i">
-      <ng-container *ngIf="assistant.visibleInSearch">
-        <td>{{ i + 1 }}</td>
-        <td>{{ assistant.fullName }}</td>
-        <td class="hide-on-small-only">{{ assistant.email }}</td>
-        <td>
-          <a class="modal-trigger" href="#print-credential" (click)="selectedAssistant = assistant">
-            <i class="fas fa-qrcode fa-lg"></i>
-          </a>
-          <a class="modal-trigger" href="#upsert-assistant" (click)="patchAssistantsForm(assistant)">
-            <i class="fas fa-edit fa-lg"></i>
-          </a>
-          <a class="modal-trigger red-text" href="#delete-assistant" (click)="selectedAssistant = assistant">
-            <i class="fas fa-trash-alt fa-lg"></i>
-          </a>
-        </td>
-      </ng-container>
-    </tr>
-  </tbody>
-</table>
-<a class="btn-floating btn-large waves-effect waves-light modal-trigger" href="#upsert-assistant">
-  <i class="fas fa-plus"></i>
-</a>
 
 <div tgModal id="print-credential" class="modal">
   <ng-container *ngIf="selectedAssistant">
@@ -45,7 +49,7 @@
       <h4>Print Credential</h4>
       <div class="center-align">
         <tg-credential #credential [assistant]="selectedAssistant" (credentialLoaded)="currentCredential = credential"
-          canvasWidth="354" canvasHeight="532">
+          canvasWidth="354" canvasHeight="547">
         </tg-credential>
       </div>
     </div>
@@ -72,8 +76,8 @@
           <label for="assistantfullname">Full Name *</label>
         </div>
         <div class="input-field col s12">
-          <input id="assistantphone" name="assistantphone" type="text" formControlName="phone">
-          <label for="assistantphone">Phone</label>
+          <input id="assistantphone" name="assistantphone" type="text" formControlName="phoneNumber">
+          <label for="assistantphone">Phone Number</label>
         </div>
       </div>
     </form>

@@ -6,7 +6,7 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { AssistantService } from '../shared/services/assistant/assistant.service';
