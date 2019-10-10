@@ -3,6 +3,10 @@ import {
   AngularFirestoreCollection,
   AngularFirestore
 } from '@angular/fire/firestore';
+import {
+  AngularFireStorage,
+  AngularFireUploadTask
+} from '@angular/fire/storage';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -17,7 +21,10 @@ const fullNameField = 'fullName';
 export class AssistantService {
   private assistantsCollection: AngularFirestoreCollection<Assistant>;
 
-  constructor(private db: AngularFirestore) {
+  constructor(
+    private db: AngularFirestore,
+    private storage: AngularFireStorage
+  ) {
     this.assistantsCollection = this.db.collection<Assistant>(
       collectionName,
       ref =>
@@ -82,6 +89,21 @@ export class AssistantService {
     messageEmitter.emit('Looks like the assistant did not make check in');
 
     return false;
+  }
+
+  getAssistantCredentialUrl(assistant: Assistant): Observable<any> {
+    const ref = this.storage.ref(`credentials/${assistant.id}.png`);
+
+    return ref.getDownloadURL();
+  }
+
+  uploadAssistantCredential(
+    assistant: Assistant,
+    credentialFile: Blob
+  ): AngularFireUploadTask {
+    const filePath = `credentials/${assistant.id}.png`;
+
+    return this.storage.upload(filePath, credentialFile);
   }
 
   private initializeCheckValues(assistant: Assistant): void {

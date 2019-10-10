@@ -1,9 +1,6 @@
 import {
   Component,
-  OnInit,
   OnChanges,
-  Output,
-  EventEmitter,
   Input,
   ViewChild,
   ElementRef
@@ -18,9 +15,8 @@ import { Assistant } from '../../models/assistant.model';
   templateUrl: './credential.component.html',
   styleUrls: ['./credential.component.scss']
 })
-export class CredentialComponent implements OnInit, OnChanges {
+export class CredentialComponent implements OnChanges {
   qrData = 'QR was not generated yet';
-  @Output() credentialLoaded = new EventEmitter();
   @Input() canvasWidth: number;
   @Input() canvasHeight: number;
   @Input() assistant: Assistant;
@@ -28,10 +24,6 @@ export class CredentialComponent implements OnInit, OnChanges {
   credentialCanvas: ElementRef;
   @ViewChild('qrCode', { static: true })
   private qrCode: QRCodeComponent;
-
-  ngOnInit(): void {
-    this.credentialLoaded.emit();
-  }
 
   ngOnChanges(): void {
     this.loadCredential();

@@ -22,8 +22,16 @@
         <ng-container *ngIf="assistant.visibleInSearch">
           <td>{{ i + 1 }}</td>
           <td>{{ assistant.fullName }}</td>
-          <td class="hide-on-small-only">{{ assistant.email }}</td>
-          <td class="hide-on-small-only">{{ assistant.phoneNumber }}</td>
+          <td class="hide-on-small-only">
+            <a [href]="'mailto:' + assistant.email.trim()">
+              {{ assistant.email }}
+            </a>
+          </td>
+          <td class="hide-on-small-only">
+            <a (click)="sendCredentialByWhatsApp(assistant)">
+              {{ assistant.phoneNumber }}
+            </a>
+          </td>
           <td class="center-align">
             <p>
               <label>
@@ -52,15 +60,28 @@
   </a>
 </div>
 
+<tg-spinner-loader *ngIf="loading"></tg-spinner-loader>
+
 <div tgModal id="print-credential" class="modal">
   <ng-container *ngIf="selectedAssistant">
     <div class="modal-content">
       <h4>Print Credential</h4>
       <div class="center-align">
-        <tg-credential #credential [assistant]="selectedAssistant" (credentialLoaded)="currentCredential = credential"
-          canvasWidth="354" canvasHeight="547">
+        <tg-credential #credential [assistant]="selectedAssistant" canvasWidth="354" canvasHeight="547">
         </tg-credential>
       </div>
+      <p>
+        Email:
+        <a [href]="'mailto:' + selectedAssistant.email.trim()">
+          {{ selectedAssistant.email }}
+        </a>
+      </p>
+      <p>
+        Phone:
+        <a (click)="sendCredentialByWhatsApp()">
+          {{ selectedAssistant.phoneNumber }}
+        </a>
+      </p>
     </div>
     <div class="modal-footer">
       <button class="modal-close waves-effect waves-light btn" (click)="printCredential()">Print</button>
