@@ -72,13 +72,13 @@
       </div>
       <p>
         Email:
-        <a [href]="'mailto:' + selectedAssistant.email.trim()">
+        <a class="modal-close" [href]="'mailto:' + selectedAssistant.email.trim()">
           {{ selectedAssistant.email }}
         </a>
       </p>
       <p>
         Phone:
-        <a (click)="sendCredentialByWhatsApp()">
+        <a class="modal-close" (click)="sendCredentialByWhatsApp()">
           {{ selectedAssistant.phoneNumber }}
         </a>
       </p>

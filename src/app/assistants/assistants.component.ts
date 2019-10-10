@@ -105,6 +105,7 @@ export class AssistantsComponent implements OnInit, OnDestroy {
           .getAssistantCredentialUrl(this.selectedAssistant)
           .subscribe(
             (url: string) => {
+              console.log('Assistant:', this.selectedAssistant.fullName);
               console.log('Credential url:', url);
 
               url = url.replace('&', '%26');
