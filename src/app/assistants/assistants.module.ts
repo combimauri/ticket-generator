@@ -10,6 +10,7 @@ import { CredentialModule } from '../shared/components/credential/credential.mod
 import { ModalModule } from '../shared/directives/modal/modal.module';
 import { SelectModule } from '../shared/directives/select/select.module';
 import { MaterializeService } from '../shared/services/materialize/materialize.service';
+import { SpinnerLoaderModule } from '../shared/components/spinner-loader/spinner-loader.module';
 
 @NgModule({
   declarations: [AssistantsComponent],
@@ -20,7 +21,8 @@ import { MaterializeService } from '../shared/services/materialize/materialize.s
     AssistantsRoutingModule,
     CredentialModule,
     ModalModule,
-    SelectModule
+    SelectModule,
+    SpinnerLoaderModule
   ],
   providers: [AssistantService, MaterializeService]
 })
