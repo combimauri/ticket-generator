@@ -6,6 +6,11 @@
         (ngModelChange)="searchAssistant()">
     </div>
   </div>
+  <div class="right-align">
+    <p>Total: {{ totalCount }}</p>
+    <p>Check In: {{ checkInCount }}</p>
+    <p>Missing: {{ totalCount - checkInCount }}</p>
+  </div>
   <table>
     <thead>
       <tr>
