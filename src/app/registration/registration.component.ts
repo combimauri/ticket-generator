@@ -15,6 +15,26 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   rfidInputEnabled = false;
   assistants: Assistant[];
   assistantsSubscription: Subscription;
+  get totalCount(): number {
+    let count = 0;
+
+    this.assistants.forEach(assistant => {
+      count++;
+    });
+
+    return count;
+  }
+  get checkInCount(): number {
+    let count = 0;
+
+    this.assistants.forEach(assistant => {
+      if (assistant.checkIn) {
+        count++;
+      }
+    });
+
+    return count;
+  }
 
   constructor(public assistantService: AssistantService) {}
 
